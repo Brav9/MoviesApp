@@ -26,7 +26,7 @@ fun SetupNavHost(navController: NavHostController) {
     ) {
 
         composable(route = Screens.Splash.route) {
-            SplashScreen()
+            SplashScreen(navController = navController)
         }
         composable(route = Screens.Main.route) {
             MainScreen()
