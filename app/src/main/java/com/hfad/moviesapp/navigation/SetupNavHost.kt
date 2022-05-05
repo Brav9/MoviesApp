@@ -6,6 +6,8 @@ import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.hfad.moviesapp.screens.MainScreen
+import com.hfad.moviesapp.screens.SplashScreen
 import com.hfad.moviesapp.utils.Constants
 
 
@@ -23,13 +25,13 @@ fun SetupNavHost(navController: NavHostController) {
         startDestination = Screens.Splash.route
     ) {
 
-        composable(route = Screens.Splash.route){
-
+        composable(route = Screens.Splash.route) {
+            SplashScreen()
         }
-        composable(route = Screens.Main.route){
-
+        composable(route = Screens.Main.route) {
+            MainScreen()
         }
-        composable(route = Screens.Details.route){
+        composable(route = Screens.Details.route) {
 
         }
     }
