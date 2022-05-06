@@ -1,8 +1,6 @@
 package com.hfad.moviesapp.navigation
 
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.unit.Constraints
-import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
