@@ -1,6 +1,5 @@
 package com.hfad.moviesapp.screens
 
-import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -16,10 +15,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
-import coil.compose.ImagePainter.State.Empty.painter
 import coil.compose.rememberImagePainter
 import com.hfad.moviesapp.MainViewModel
 import com.hfad.moviesapp.data.models.Movies
+import com.hfad.moviesapp.navigation.Screens
 
 @Composable
 fun MainScreen(navController: NavHostController, viewModel: MainViewModel) {
@@ -33,19 +32,21 @@ fun MainScreen(navController: NavHostController, viewModel: MainViewModel) {
                 .padding(20.dp)
         ) {
             items(allMovies.take(10)) { item ->
-                MovieItem(item = item)
+                MovieItem(item = item, navController = navController)
             }
         }
     }
 }
 
 @Composable
-fun MovieItem(item: Movies) {
+fun MovieItem(item: Movies, navController: NavHostController) {
     Card(
         elevation = 4.dp,
         modifier = Modifier
             .padding(top = 8.dp)
-            .clickable { }
+            .clickable {
+                navController.navigate(Screens.Details.route + "/${item.id}")
+            }
     ) {
         Row(
             modifier = Modifier
