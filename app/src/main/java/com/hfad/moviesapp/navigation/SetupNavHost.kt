@@ -1,6 +1,5 @@
 package com.hfad.moviesapp.navigation
 
-import android.app.FragmentManager
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -18,7 +17,6 @@ sealed class Screens(val route: String) {
     object Details : Screens(route = Constants.Screens.DETAILS_SCREEN)
 }
 
-
 @Composable
 fun SetupNavHost(navController: NavHostController, viewModel: MainViewModel) {
     NavHost(
@@ -33,8 +31,10 @@ fun SetupNavHost(navController: NavHostController, viewModel: MainViewModel) {
             MainScreen(navController = navController, viewModel = viewModel)
         }
         composable(route = Screens.Details.route + "/{Id}") { backStackEntry ->
-            DetailsScreen(viewModel = viewModel, itemId = backStackEntry.arguments?.getString("Id") ?: "1")
+            DetailsScreen(
+                viewModel = viewModel,
+                itemId = backStackEntry.arguments?.getString("Id") ?: "1"
+            )
         }
     }
-
 }
