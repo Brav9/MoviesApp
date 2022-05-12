@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">MoviesApp</string>
+    <string name="reviews_api_key">fmcZIDDP7U3KrtyefcPS93rxQ0H1aNL5</string>
 </resources>

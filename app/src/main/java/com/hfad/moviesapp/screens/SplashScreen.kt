@@ -4,18 +4,13 @@ import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.Icon
 import androidx.compose.material.Text
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.res.imageResource
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -36,23 +31,27 @@ fun SplashScreen(navController: NavController, viewModel: MainViewModel) {
         targetValue = if (startAnimate) 1f else 0f,
         animationSpec = tween(3000)
     )
+//    LaunchedEffect(key1 = true) {
+//        startAnimate = true
+//        viewModel.getAllMovies()
+//        delay(3000)
+//        navController.navigate(Screens.Main.route)
+//    }
     LaunchedEffect(key1 = true) {
         startAnimate = true
-        viewModel.getAllMovies()
-        delay(3000)
-        navController.navigate(Screens.Main.route)
+        viewModel.getAllReviews()
+        delay(4000)
+        navController.navigate(Screens.Reviews.route)
     }
     Splash(alpha = alphaAnimation.value)
 }
 
 @Composable
 fun Splash(alpha: Float) {
-    Column (
+    Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
-//        contentAlignment = Alignment.Center
-
     ) {
         Image(
             modifier = Modifier
@@ -60,9 +59,7 @@ fun Splash(alpha: Float) {
                 .alpha(alpha = alpha),
 
             bitmap = ImageBitmap.imageResource(R.drawable.cinema),
-//            imageVector = R.drawable.cinema,
             contentDescription = "",
-//            tint = Color.Black
         )
         Text(
             text = "Movies App",

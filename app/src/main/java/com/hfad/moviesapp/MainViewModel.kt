@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.hfad.moviesapp.data.models.Movies
+import com.hfad.moviesapp.data.models.Review
 import com.hfad.moviesapp.data.network.ApiRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -16,7 +17,11 @@ class MainViewModel @Inject constructor(private val repository: ApiRepository) :
 
     private val _allMovies = MutableLiveData<List<Movies>>()
     val allMovies: LiveData<List<Movies>>
-    get() = _allMovies
+        get() = _allMovies
+
+    private val _allReviews = MutableLiveData<List<Review>>()
+    val allReviews: LiveData<List<Review>>
+        get() = _allReviews
 
     fun getAllMovies() {
         viewModelScope.launch {
@@ -28,5 +33,22 @@ class MainViewModel @Inject constructor(private val repository: ApiRepository) :
                 }
             }
         }
+    }
+
+    fun getAllReviews() {
+        viewModelScope.launch {
+            repository.getAllReviews().let {
+                if (it.isSuccessful) {
+                    Log.d("OLOLO", "getAllReviews: ${it.body()}")
+                    _allReviews.postValue(it.body()!!.result)
+                } else {
+                    Log.d("OLOLO", "Failed to load reviews: ${it.errorBody()}")
+                }
+            }
+        }
+    }
+
+    init {
+        getAllReviews()
     }
 }
